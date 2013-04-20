@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  p Transport WebSockets
+    //
+      input(type='radio',name='transport',value='websocket')
+      input(type='radio',name='transport',value='xhr-polling')
+      input(type='radio',name='transport',value='jsonp-polling')
+      transport = 1
+      case transport 
+        when 'xhr'
+          label XHR
+        when 'json'
+          label JSON
+        default
+          label WebSockets
+          script 
+            var socket = io.connect('http://localhost');
+  p Current ping: 
+    span.aa NaN
+    input.ping(type='checkbox') 
+  canvas(id='canvas',width='800',height='600')
+  div.bb Console:
