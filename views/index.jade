@@ -3,21 +3,25 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  p Transport WebSockets
+  p Transport
     //
       input(type='radio',name='transport',value='websocket')
       input(type='radio',name='transport',value='xhr-polling')
       input(type='radio',name='transport',value='jsonp-polling')
-      transport = 1
-      case transport 
-        when 'xhr'
-          label XHR
-        when 'json'
-          label JSON
-        default
-          label WebSockets
-          script 
-            var socket = io.connect('http://localhost');
+    case transport 
+      when 'xhr'
+        label XHR
+        script(src='/javascripts/xhr.js')
+      when 'json'
+        label JSON
+        script(src='/javascripts/json.js')
+      when 'htmlfile'
+        label htmlfile
+        script(src='/javascripts/html.js')
+      default
+        label WebSockets
+        script(src='/javascripts/websocket.js')
+    script(src='/javascripts/canvas-draw.js')
   p Current ping: 
     span.aa NaN
     input.ping(type='checkbox') 

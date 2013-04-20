@@ -29,6 +29,10 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
+app.get('/xhr', routes.xhr);
+app.get('/json', routes.json);
+app.get('/htmlfile', routes.htmlfile);
+
 app.get('/socketio', routes.socketio);
 app.get('/users', user.list);
 
