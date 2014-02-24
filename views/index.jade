@@ -4,10 +4,6 @@ block content
   h1= title
   p Welcome to #{title}
   p Transport
-    //
-      input(type='radio',name='transport',value='websocket')
-      input(type='radio',name='transport',value='xhr-polling')
-      input(type='radio',name='transport',value='jsonp-polling')
     case transport 
       when 'xhr'
         label XHR
@@ -21,6 +17,9 @@ block content
       default
         label WebSockets
         script(src='/javascripts/websocket.js')
+    each type in ['websocket', 'xhr', 'json', 'htmlfile', 'socketio']
+      a(href=type) #{type}
+      a  
     script(src='/javascripts/canvas-draw.js')
   p Current ping: 
     span.aa NaN
