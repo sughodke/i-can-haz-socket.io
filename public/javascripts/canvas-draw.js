@@ -59,10 +59,17 @@ function draw() {
     ctx.moveTo(x, y);
     sendPosition('down', x, y);
   }
+  canvas.ontouchstart = function (e) {
+    var touch = e.targetTouches[0];
+    canvas.onmousedown(touch);
+  }
 
   canvas.onmouseup = function(e) {
     x = null;
     y = null;
+  }
+  canvas.ontouchend = function () {
+    canvas.onmousedown({});
   }
 
   canvas.onmousemove = function(e) {
@@ -77,5 +84,10 @@ function draw() {
     ctx.stroke();
     ctx.moveTo(x, y);
     sendPosition('move', x, y);
+  }
+  canvas.ontouchmove = function (e) {
+    e.preventDefault();
+    var touch = e.targetTouches[0];
+    canvas.onmousemove(touch);
   }
 };
